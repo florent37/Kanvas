@@ -1,5 +1,7 @@
 # Kanvas
 
+Make canvas easier to use in Kotlin 😊 
+
 # Added support methods to Canvas
 
 `drawArc(centerX, centerY, circleRadius, startAngle, sweepAngle, paint)`
