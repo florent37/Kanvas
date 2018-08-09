@@ -7,11 +7,11 @@ import android.support.annotation.CallSuper
 import android.support.annotation.ColorInt
 import android.support.annotation.FloatRange
 import android.text.TextPaint
+import android.view.View
+import com.github.florent37.kanvas.Variables
 import com.github.florent37.kanvas.value.Rotation
 import com.github.florent37.kanvas.value.Scale
 import com.github.florent37.kanvas.value.Shadow
-import com.github.florent37.kanvas.Variables
-import com.github.florent37.kanvas.anim.core.ShapeAnimation
 import com.github.florent37.kanvas.value.Stroke
 
 abstract class Shape protected constructor() {
@@ -41,7 +41,7 @@ abstract class Shape protected constructor() {
 
     var alpha: Float
         get() = paint.alpha / 255f
-        set(@FloatRange(from = 0.0, to = 1.0) value){
+        set(@FloatRange(from = 0.0, to = 1.0) value) {
             paint.alpha = (255 * value).toInt()
             update()
         }
@@ -49,7 +49,7 @@ abstract class Shape protected constructor() {
     var color: Int
         @ColorInt
         get() = paint.color
-        set(@ColorInt value){
+        set(@ColorInt value) {
             paint.color = value
             update()
         }
@@ -67,7 +67,7 @@ abstract class Shape protected constructor() {
         paint.typeface = Typeface.DEFAULT
     }
 
-    var style : Paint.Style
+    var style: Paint.Style
         get() = paint.style
         set(value) {
             paint.style = value
@@ -91,4 +91,14 @@ abstract class Shape protected constructor() {
     }
 
     abstract fun containsTouch(x: Float, y: Float): Boolean
+}
+
+fun <S : Shape> S.initWhenViewHasSize(v: View, block: (S.(view: View) -> Unit)): S {
+    v.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+        override fun onLayoutChange(v: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
+            v.removeOnLayoutChangeListener(this)
+            block.invoke(this@initWhenViewHasSize, v)
+        }
+    })
+    return this
 }

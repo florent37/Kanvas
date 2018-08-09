@@ -2,6 +2,34 @@
 
 Make canvas easier to use in Kotlin 😊 
 
+# ✨ Use shapes & write less code to do more magic ✨
+
+```
+val canvasAnimator = CanvasAnimator(this)
+
+val background = RectShape {
+        this.color = Color.parseColor("#6fbf73")
+        this.cornerRadius = 16.dpToPx(context)
+}.initWhenViewHasSize(this){ view ->
+    left = 100f
+    width = view.width / 2f
+    top = 100f
+    height = view.height / 3f
+}
+
+
+fun animate(){
+    canvasAnimator
+            .play(background.animate().right.to(this.width.toFloat()))
+            .start()
+}
+
+override fun onDraw(canvas: Canvas) {
+    super.onDraw(canvas)
+    canvas.draw(background)
+}
+```
+
 # Added support methods to Canvas
 
 `drawArc(centerX, centerY, circleRadius, startAngle, sweepAngle, paint)`

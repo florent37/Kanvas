@@ -6,42 +6,38 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.github.florent37.kanvas.anim.CanvasAnimator
+import com.github.florent37.kanvas.dpToPx
 import com.github.florent37.kanvas.draw
 import com.github.florent37.kanvas.shape.RectShape
+import com.github.florent37.kanvas.shape.initWhenViewHasSize
 
-class CustomView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+class CustomView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
     val canvasAnimator = CanvasAnimator(this)
 
-    val background = RectShape().apply {
-        this.color = Color.BLACK
+    val background = RectShape {
+        this.color = Color.parseColor("#6fbf73")
+        this.cornerRadius = 16.dpToPx(context)
+    }.initWhenViewHasSize(this){ view ->
+        left = 100f
+        width = view.width / 2f
+        top = 100f
+        height = view.height / 3f
     }
 
 
     init {
         setWillNotDraw(false)
-        setOnClickListener{
+        setOnClickListener {
             canvasAnimator
-                    .play(background.animate().right.equal(600f))
+                    .play(background.animate().right.to(this.width.toFloat()))
                     .start()
         }
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
-        background.apply {
-            left = 100f
-            width = 100f
-
-            top = 100f
-            height = 50f
-        }
-    }
-
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas?.draw(background)
+        canvas.draw(background)
     }
 
 }

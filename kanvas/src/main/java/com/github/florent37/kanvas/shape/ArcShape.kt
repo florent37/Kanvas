@@ -5,7 +5,13 @@ import android.graphics.Paint
 import android.graphics.RectF
 import com.github.florent37.kanvas.anim.ArcShapeAnimation
 
-open class ArcShape : PathShape() {
+open class ArcShape : PathShape {
+
+    constructor() : super()
+
+    constructor(block: (ArcShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     protected val animation = ArcShapeAnimation(this)
 

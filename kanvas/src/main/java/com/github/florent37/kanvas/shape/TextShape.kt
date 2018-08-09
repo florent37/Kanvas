@@ -7,7 +7,13 @@ import android.text.Layout
 import android.text.StaticLayout
 import com.github.florent37.kanvas.Alignment
 
-open class TextShape : RectShape() {
+open class TextShape : RectShape {
+
+    constructor() : super()
+
+    constructor(block: (TextShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     var text: CharSequence = ""
         set(value) {

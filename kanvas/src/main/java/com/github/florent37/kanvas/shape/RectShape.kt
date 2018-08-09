@@ -9,11 +9,17 @@ import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.RectShapeAnimation
 import com.github.florent37.kanvas.value.Border
 
-open class RectShape : PathShape() {
+open class RectShape : PathShape {
 
     protected val animation = RectShapeAnimation(this)
 
     val border = Border(this)
+
+    constructor() : super()
+
+    constructor(block: (RectShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     protected val rectF = RectF()
 

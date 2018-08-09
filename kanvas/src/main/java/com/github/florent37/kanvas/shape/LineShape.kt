@@ -1,10 +1,14 @@
 package com.github.florent37.kanvas.shape
 
 import android.graphics.Canvas
-import android.graphics.PathEffect
-import android.support.annotation.ColorInt
 
-open class LineShape : Shape() {
+open class LineShape : Shape {
+
+    constructor() : super()
+
+    constructor(block: (LineShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     var startX = 0.0f
     var startY = 0.0f

@@ -5,9 +5,15 @@ import com.github.florent37.kanvas.anim.ArcShapeAnimation
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.value.Border
 
-open class CircleShape : Shape() {
+open class CircleShape : Shape {
 
     protected val animation = CircleShapeAnimation(this)
+
+    constructor() : super()
+
+    constructor(block: (CircleShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     var radius = 0f
     override var centerX = 0f

@@ -4,7 +4,13 @@ import android.graphics.PointF
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.TriangleShapeAnimation
 
-class TriangleShape : PathShape() {
+class TriangleShape : PathShape {
+
+    constructor() : super()
+
+    constructor(block: (TriangleShape.() -> Unit)) : super() {
+        block.invoke(this)
+    }
 
     protected val animation = TriangleShapeAnimation(this)
 
