@@ -1,5 +1,7 @@
 # Kanvas
 
+**WORK IN PROGRESS**
+
 Make canvas easier to use in Kotlin 😊 
 
 # ✨ Use shapes & write less code to do more magic ✨
