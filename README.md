@@ -4,6 +4,8 @@ Make canvas easier to use in Kotlin 😊
 
 # ✨ Use shapes & write less code to do more magic ✨
 
+[![arc](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/sample_arc.gif)](https://github.com/florent37/MyLittleCanvas)
+
 ```kotlin
 val canvasAnimator = CanvasAnimator(this)
 
@@ -29,6 +31,53 @@ override fun onDraw(canvas: Canvas) {
     canvas.draw(background)
 }
 ```
+
+# Examples
+
+
+[![arc](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/sample_arc.gif)](https://github.com/florent37/MyLittleCanvas)
+[![dots](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/dots_sample.gif)](https://github.com/florent37/MyLittleCanvas)
+[![slider](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/slider_sample.gif)](https://github.com/florent37/MyLittleCanvas)
+[![tree](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/sample_tree.gif)](https://github.com/florent37/MyLittleCanvas)
+
+# Available shapes
+
+| Shapes    | link       |
+|-----------|------------|
+| Rect      |            |
+| Circle    |            |
+| Text      |            |
+| Arc       |            |
+| Line      |            |
+| Triangle  |            |
+| Drawable  |            |
+| Path      |            |
+
+# Animation
+
+Follow the example of [SwitchView](https://github.com/florent37/MyLittleCanvas/blob/master/app/src/main/java/canvastoolbox/florent37/github/com/canvastoolbox/views/SwitchView.java)
+
+Shape animations are executed by an instance of `ShapeAnimator` attached to your view
+
+```java
+val canvasAnimator = CanvasAnimator(this)
+```
+
+All animated methods of shapes are wrapped into the method `.animate()`
+
+For example, for a `CircleShape`, you can animate his position (centerX) using
+```java
+myCircleShape.animate().centerX.to(15);
+```
+
+Then use your `ShapeAnimator` to execute this animation
+
+```java
+shapeAnimator.play(myCircleShape.animate().centerX.to(15);)
+    .setDuration(500)
+    .start()
+```
+
 
 # Added support methods to Canvas
 
