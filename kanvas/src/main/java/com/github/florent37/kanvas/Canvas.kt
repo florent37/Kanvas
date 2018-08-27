@@ -117,22 +117,27 @@ inline fun Canvas.withMatrix(
 val canvasTmpRect = RectF()
 
 fun Canvas.drawArc(centerX: Float, centerY: Float, circleRadius: Float, startAngle: Float, sweepAngle: Float, paint: Paint) {
-    canvasTmpRect.set(centerX - circleRadius, centerY - circleRadius, centerX + circleRadius, centerY + circleRadius)
-    this.drawArc(canvasTmpRect, startAngle, sweepAngle, false, paint)
+    synchronized(canvasTmpRect) {
+        canvasTmpRect.set(centerX - circleRadius, centerY - circleRadius, centerX + circleRadius, centerY + circleRadius)
+        this.drawArc(canvasTmpRect, startAngle, sweepAngle, false, paint)
+    }
 }
 
 fun Canvas.drawArc(center: PointF, circleRadius: Float, startAngle: Float, sweepAngle: Float, paint: Paint) {
     drawArc(center.x, center.y, circleRadius, startAngle, sweepAngle, paint)
-
 }
 fun Canvas.drawArc(left: Float, top: Float, right: Float, bottom: Float, startAngle: Float, sweepAngle: Float, useCenter: Boolean, paint: Paint) {
-    canvasTmpRect.set(left, top, right, bottom)
-    drawArc(canvasTmpRect, startAngle, sweepAngle, useCenter, paint)
+    synchronized(canvasTmpRect) {
+        canvasTmpRect.set(left, top, right, bottom)
+        drawArc(canvasTmpRect, startAngle, sweepAngle, useCenter, paint)
+    }
 }
 
 fun Canvas.drawOval(left: Float, top: Float, right: Float, bottom: Float, startAngle: Float, sweepAngle: Float, useCenter: Boolean, paint: Paint) {
-    canvasTmpRect.set(left, top, right, bottom)
-    drawOval(canvasTmpRect, paint)
+    synchronized(canvasTmpRect) {
+        canvasTmpRect.set(left, top, right, bottom)
+        drawOval(canvasTmpRect, paint)
+    }
 }
 
 fun Canvas.drawLine(start: PointF, end: PointF, paint: Paint) {
@@ -140,8 +145,10 @@ fun Canvas.drawLine(start: PointF, end: PointF, paint: Paint) {
 }
 
 fun Canvas.drawRoundRect(left: Float, top: Float, right: Float, bottom: Float, rx: Float, ry: Float, paint: Paint) {
-    canvasTmpRect.set(left, top, right, bottom)
-    this.drawRoundRect(canvasTmpRect, rx, ry, paint)
+    synchronized(canvasTmpRect) {
+        canvasTmpRect.set(left, top, right, bottom)
+        this.drawRoundRect(canvasTmpRect, rx, ry, paint)
+    }
 }
 
 fun Canvas.draw(shape: Shape) {
