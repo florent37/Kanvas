@@ -9,8 +9,7 @@ Make canvas easier to use in Kotlin 😊
 [![arc](https://raw.githubusercontent.com/florent37/MyLittleCanvas/master/medias/example/sample_arc.gif)](https://github.com/florent37/MyLittleCanvas)
 
 ```kotlin
-val canvasAnimator = CanvasAnimator(this)
-
+//create your shapes
 val background = RectShape(this) { view ->
    color = Color.parseColor("#6fbf73")
    cornerRadius = 16.dpToPx(context)
@@ -21,7 +20,7 @@ val background = RectShape(this) { view ->
    height = view.height / 3f
 }
 
-
+val canvasAnimator = CanvasAnimator(this)
 fun animate(){
     canvasAnimator
             .play(background.animate().right.to(this.width.toFloat()))
