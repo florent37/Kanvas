@@ -27,6 +27,7 @@ fun animate(){
             .start()
 }
 
+//draw them
 override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
     canvas.draw(background)
