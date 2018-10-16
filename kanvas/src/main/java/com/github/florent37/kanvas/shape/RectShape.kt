@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
+import android.view.View
 import com.github.florent37.kanvas.RoundRect
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.RectShapeAnimation
@@ -19,6 +20,10 @@ open class RectShape : PathShape {
 
     constructor(block: (RectShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (RectShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     protected val rectF = RectF()

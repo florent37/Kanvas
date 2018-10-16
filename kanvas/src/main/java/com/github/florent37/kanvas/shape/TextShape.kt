@@ -5,6 +5,7 @@ import android.graphics.Rect
 import android.graphics.Typeface
 import android.text.Layout
 import android.text.StaticLayout
+import android.view.View
 import com.github.florent37.kanvas.Alignment
 
 open class TextShape : RectShape {
@@ -13,6 +14,10 @@ open class TextShape : RectShape {
 
     constructor(block: (TextShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (TextShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     var text: CharSequence = ""

@@ -11,14 +11,14 @@ Make canvas easier to use in Kotlin 😊
 ```kotlin
 val canvasAnimator = CanvasAnimator(this)
 
-val background = RectShape {
-        this.color = Color.parseColor("#6fbf73")
-        this.cornerRadius = 16.dpToPx(context)
-}.initWhenViewHasSize(this){ view ->
-    left = 100f
-    width = view.width / 2f
-    top = 100f
-    height = view.height / 3f
+val background = RectShape(this) { view ->
+   color = Color.parseColor("#6fbf73")
+   cornerRadius = 16.dpToPx(context)
+
+   left = 100f
+   width = view.width / 2f
+   top = 100f
+   height = view.height / 3f
 }
 
 

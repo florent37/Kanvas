@@ -1,6 +1,7 @@
 package com.github.florent37.kanvas.shape
 
 import android.graphics.Canvas
+import android.view.View
 
 open class LineShape : Shape {
 
@@ -8,6 +9,10 @@ open class LineShape : Shape {
 
     constructor(block: (LineShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (LineShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     var startX = 0.0f

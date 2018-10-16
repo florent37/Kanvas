@@ -3,6 +3,7 @@ package com.github.florent37.kanvas.shape
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
+import android.view.View
 import com.github.florent37.kanvas.anim.ArcShapeAnimation
 
 open class ArcShape : PathShape {
@@ -11,6 +12,10 @@ open class ArcShape : PathShape {
 
     constructor(block: (ArcShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (ArcShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     protected val animation = ArcShapeAnimation(this)

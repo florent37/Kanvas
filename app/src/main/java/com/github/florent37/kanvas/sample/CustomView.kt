@@ -9,22 +9,20 @@ import com.github.florent37.kanvas.anim.CanvasAnimator
 import com.github.florent37.kanvas.dpToPx
 import com.github.florent37.kanvas.draw
 import com.github.florent37.kanvas.shape.RectShape
-import com.github.florent37.kanvas.shape.initWhenViewHasSize
 
 class CustomView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
     val canvasAnimator = CanvasAnimator(this)
 
-    val background = RectShape {
+    val background = RectShape(this) { view ->
         this.color = Color.parseColor("#6fbf73")
         this.cornerRadius = 16.dpToPx(context)
-    }.initWhenViewHasSize(this){ view ->
+
         left = 100f
         width = view.width / 2f
         top = 100f
         height = view.height / 3f
     }
-
 
     init {
         setWillNotDraw(false)

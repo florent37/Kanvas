@@ -1,6 +1,7 @@
 package com.github.florent37.kanvas.shape
 
 import android.graphics.Canvas
+import android.view.View
 import com.github.florent37.kanvas.anim.ArcShapeAnimation
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.value.Border
@@ -13,6 +14,10 @@ open class CircleShape : Shape {
 
     constructor(block: (CircleShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (CircleShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     var radius = 0f

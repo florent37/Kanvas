@@ -1,6 +1,7 @@
 package com.github.florent37.kanvas.shape
 
 import android.graphics.PointF
+import android.view.View
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.TriangleShapeAnimation
 
@@ -10,6 +11,10 @@ class TriangleShape : PathShape {
 
     constructor(block: (TriangleShape.() -> Unit)) : super() {
         block.invoke(this)
+    }
+
+    constructor(v: View, block: (TriangleShape.(view: View) -> Unit)) : super() {
+        this.initWhenViewHasSize(v, block = block)
     }
 
     protected val animation = TriangleShapeAnimation(this)
