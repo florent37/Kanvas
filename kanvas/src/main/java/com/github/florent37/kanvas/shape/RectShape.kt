@@ -6,9 +6,12 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.view.View
 import com.github.florent37.kanvas.RoundRect
-import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.RectShapeAnimation
 import com.github.florent37.kanvas.value.Border
+
+fun View.rectShape(block: (RectShape.(view: View) -> Unit)) : RectShape {
+    return RectShape(this, block)
+}
 
 open class RectShape : PathShape {
 

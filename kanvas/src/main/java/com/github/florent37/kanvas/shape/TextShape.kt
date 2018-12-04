@@ -8,6 +8,10 @@ import android.text.StaticLayout
 import android.view.View
 import com.github.florent37.kanvas.Alignment
 
+fun View.textShape(block: (TextShape.(view: View) -> Unit)) : TextShape {
+    return TextShape(this, block)
+}
+
 open class TextShape : RectShape {
 
     constructor() : super()

@@ -5,6 +5,10 @@ import android.view.View
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.anim.TriangleShapeAnimation
 
+fun View.triangleShape(block: (TriangleShape.(view: View) -> Unit)) : TriangleShape {
+    return TriangleShape(this, block)
+}
+
 class TriangleShape : PathShape {
 
     constructor() : super()

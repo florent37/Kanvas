@@ -5,18 +5,18 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.github.florent37.kanvas.anim.CanvasAnimator
+import com.github.florent37.kanvas.anim.obtainCanvasAnimator
 import com.github.florent37.kanvas.dpToPx
 import com.github.florent37.kanvas.draw
-import com.github.florent37.kanvas.shape.RectShape
+import com.github.florent37.kanvas.shape.rectShape
 
 class CustomView(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
-    val canvasAnimator = CanvasAnimator(this)
+    val canvasAnimator = obtainCanvasAnimator()
 
-    val background = RectShape(this) { view ->
+    val background = rectShape { view ->
         this.color = Color.parseColor("#6fbf73")
-        this.cornerRadius = 16.dpToPx(context)
+        this.cornerRadius = 16.dpToPx(view)
 
         left = 100f
         width = view.width / 2f

@@ -11,6 +11,8 @@ import com.github.florent37.kanvas.anim.core.ViewInvalidateListener
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
+fun View.obtainCanvasAnimator() = CanvasAnimator(this)
+
 class CanvasAnimator(var invalidateListener: InvalidateListener?) {
 
     private val animators = mutableListOf<ValueAnimator>()

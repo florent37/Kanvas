@@ -6,6 +6,10 @@ import android.graphics.RectF
 import android.view.View
 import com.github.florent37.kanvas.anim.ArcShapeAnimation
 
+fun View.arcShape(block: (ArcShape.(view: View) -> Unit)) : ArcShape {
+    return ArcShape(this, block)
+}
+
 open class ArcShape : PathShape {
 
     constructor() : super()

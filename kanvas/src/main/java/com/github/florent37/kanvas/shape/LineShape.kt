@@ -3,6 +3,10 @@ package com.github.florent37.kanvas.shape
 import android.graphics.Canvas
 import android.view.View
 
+fun View.lineShape(block: (LineShape.(view: View) -> Unit)) : LineShape {
+    return LineShape(this, block)
+}
+
 open class LineShape : Shape {
 
     constructor() : super()

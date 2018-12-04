@@ -6,6 +6,10 @@ import com.github.florent37.kanvas.anim.ArcShapeAnimation
 import com.github.florent37.kanvas.anim.CircleShapeAnimation
 import com.github.florent37.kanvas.value.Border
 
+fun View.circleShape(block: (CircleShape.(view: View) -> Unit)) : CircleShape {
+    return CircleShape(this, block)
+}
+
 open class CircleShape : Shape {
 
     protected val animation = CircleShapeAnimation(this)
